@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { User } from '@/entities';
-import { Eye, EyeOff, Mail, Lock, Sparkles } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, Sparkles, Brain } from 'lucide-react';
 
 interface AuthPageProps {
   onAuthSuccess: (user: any) => void;
@@ -63,7 +63,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onAuthSuccess }) => {
       {floatingIcons.map(({ icon: Icon, delay }, index) => (
         <motion.div
           key={index}
-          className="absolute text-cerebra-primary/30"
+          className="absolute text-blue-400/30"
           initial={{ 
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
@@ -100,23 +100,45 @@ const AuthPage: React.FC<AuthPageProps> = ({ onAuthSuccess }) => {
         <Card className="glass-morphism border-white/20 shadow-2xl">
           <CardHeader className="text-center space-y-4">
             <motion.div
-              className="w-16 h-16 mx-auto rounded-full bg-gradient-cerebra flex items-center justify-center"
+              className="w-16 h-16 mx-auto rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-400 flex items-center justify-center relative"
               animate={{ 
                 boxShadow: [
-                  "0 0 20px rgba(184, 192, 255, 0.3)",
-                  "0 0 30px rgba(160, 228, 255, 0.5)",
-                  "0 0 20px rgba(184, 192, 255, 0.3)"
+                  "0 0 20px rgba(59, 130, 246, 0.5)",
+                  "0 0 30px rgba(34, 211, 238, 0.7)",
+                  "0 0 20px rgba(59, 130, 246, 0.5)"
                 ]
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              <span className="text-2xl font-gildra text-white font-bold">C</span>
+              <Brain className="w-8 h-8 text-white" />
+              {/* Mini starry overlay */}
+              <div className="absolute inset-0 rounded-full">
+                {Array.from({ length: 4 }, (_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-1 h-1 bg-white rounded-full"
+                    style={{
+                      left: `${25 + i * 15}%`,
+                      top: `${30 + (i % 2) * 20}%`,
+                    }}
+                    animate={{ 
+                      opacity: [0.3, 1, 0.3],
+                      scale: [0.5, 1, 0.5]
+                    }}
+                    transition={{ 
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: i * 0.3
+                    }}
+                  />
+                ))}
+              </div>
             </motion.div>
             
             <CardTitle className="text-2xl font-gildra text-white">
               Welcome to Cerebra
             </CardTitle>
-            <CardDescription className="text-cerebra-primary font-enter">
+            <CardDescription className="text-blue-300 font-enter">
               {isLogin ? 'Sign in to continue your learning journey' : 'Create your account to begin'}
             </CardDescription>
           </CardHeader>
@@ -125,13 +147,13 @@ const AuthPage: React.FC<AuthPageProps> = ({ onAuthSuccess }) => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
                 <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-cerebra-primary" />
+                  <Mail className="absolute left-3 top-3 h-4 w-4 text-blue-400" />
                   <Input
                     type="email"
                     placeholder="Email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:border-cerebra-primary"
+                    className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:border-blue-400"
                     required
                   />
                 </div>
@@ -139,19 +161,19 @@ const AuthPage: React.FC<AuthPageProps> = ({ onAuthSuccess }) => {
               
               <div className="space-y-2">
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-cerebra-primary" />
+                  <Lock className="absolute left-3 top-3 h-4 w-4 text-blue-400" />
                   <Input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="pl-10 pr-10 bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:border-cerebra-primary"
+                    className="pl-10 pr-10 bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:border-blue-400"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-3 text-cerebra-primary hover:text-cerebra-accent transition-colors"
+                    className="absolute right-3 top-3 text-blue-400 hover:text-cyan-300 transition-colors"
                   >
                     {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
@@ -161,7 +183,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onAuthSuccess }) => {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full holographic-button bg-gradient-cerebra hover:bg-gradient-sunset text-white font-enter font-medium py-3 transition-all duration-300"
+                className="w-full holographic-button bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-enter font-medium py-3 transition-all duration-300"
               >
                 {isLoading ? (
                   <motion.div
@@ -178,7 +200,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onAuthSuccess }) => {
             <div className="text-center">
               <button
                 onClick={() => setIsLogin(!isLogin)}
-                className="text-cerebra-primary hover:text-cerebra-accent transition-colors font-enter"
+                className="text-blue-400 hover:text-cyan-300 transition-colors font-enter"
               >
                 {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
               </button>

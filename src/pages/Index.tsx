@@ -4,6 +4,7 @@ import SplashLoader from '@/components/SplashLoader';
 import AuthPage from '@/components/AuthPage';
 import UploadInterface from '@/components/UploadInterface';
 import LearningTechniquesCarousel from '@/components/LearningTechniquesCarousel';
+import Dashboard from '@/components/Dashboard';
 
 type AppState = 'loading' | 'auth' | 'upload' | 'techniques' | 'dashboard';
 
@@ -58,15 +59,13 @@ const Index = () => {
           />
         )}
         
-        {appState === 'dashboard' && selectedTechnique && (
-          <div key="dashboard" className="min-h-screen bg-gradient-to-br from-cerebra-dark via-cerebra-navy to-cerebra-highlight flex items-center justify-center">
-            <div className="text-center text-white">
-              <h1 className="text-4xl font-gildra mb-4">Dashboard Coming Soon</h1>
-              <p className="text-xl text-cerebra-primary">
-                {selectedTechnique.title} dashboard will be implemented next
-              </p>
-            </div>
-          </div>
+        {appState === 'dashboard' && selectedTechnique && uploadedContentId && user && (
+          <Dashboard 
+            key="dashboard" 
+            selectedTechnique={selectedTechnique}
+            contentId={uploadedContentId}
+            user={user}
+          />
         )}
       </AnimatePresence>
     </div>
