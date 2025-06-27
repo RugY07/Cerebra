@@ -7,13 +7,13 @@ import {
   Headphones, 
   Zap, 
   MessageSquare, 
-  Cube, 
+  Box, 
   Smartphone, 
   Moon, 
   TrendingUp, 
   MapPin, 
   Sparkles,
-  Hand,
+  TouchpadOff,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
@@ -68,7 +68,7 @@ const techniques: LearningTechnique[] = [
     id: 'memory-palace',
     title: '3D Memory Palaces',
     description: 'Immersive spatial memory techniques',
-    icon: Cube,
+    icon: Box,
     color: 'from-indigo-500 to-purple-500',
     features: ['3D environments', 'Spatial anchoring', 'Virtual navigation']
   },
@@ -116,7 +116,7 @@ const techniques: LearningTechnique[] = [
     id: 'haptic-flashcards',
     title: 'Haptic Flashcards',
     description: 'Touch-based memory reinforcement',
-    icon: Hand,
+    icon: TouchpadOff,
     color: 'from-red-500 to-pink-500',
     features: ['Tactile feedback', 'Muscle memory', 'Multi-sensory learning']
   }
