@@ -1,0 +1,51 @@
+{
+  "name": "Content",
+  "description": "Uploaded content that gets processed by AI",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title or filename of the content"
+    },
+    "content_type": {
+      "type": "string",
+      "description": "Type of content (pdf, image, video)",
+      "enum": ["pdf", "image", "video"]
+    },
+    "file_url": {
+      "type": "string",
+      "description": "URL to the uploaded file"
+    },
+    "processed_summary": {
+      "type": "string",
+      "description": "AI-generated summary of the content"
+    },
+    "key_concepts": {
+      "type": "array",
+      "description": "Extracted key concepts from the content",
+      "items": {
+        "type": "string"
+      }
+    },
+    "processing_status": {
+      "type": "string",
+      "description": "Status of AI processing",
+      "enum": ["pending", "processing", "completed", "failed"]
+    },
+    "learning_modules": {
+      "type": "array",
+      "description": "Generated learning modules for different techniques",
+      "items": {
+        "type": "object",
+        "properties": {
+          "technique": { "type": "string" },
+          "module_data": { "type": "object" },
+          "generated_at": { "type": "string" }
+        }
+      }
+    },
+    "user_id": {
+      "type": "string",
+      "description": "ID of the user who uploaded this content"
+    }
+  }
+}

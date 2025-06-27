@@ -1,0 +1,49 @@
+{
+  "name": "User",
+  "description": "Extended user entity for Cerebra platform with learning preferences and history",
+  "properties": {
+    "learning_preferences": {
+      "type": "array",
+      "description": "Array of preferred learning techniques",
+      "items": {
+        "type": "string"
+      }
+    },
+    "upload_history": {
+      "type": "array",
+      "description": "History of uploaded content",
+      "items": {
+        "type": "object",
+        "properties": {
+          "filename": { "type": "string" },
+          "upload_date": { "type": "string" },
+          "content_type": { "type": "string" },
+          "processed": { "type": "boolean" }
+        }
+      }
+    },
+    "session_history": {
+      "type": "array",
+      "description": "Learning session history",
+      "items": {
+        "type": "object",
+        "properties": {
+          "session_id": { "type": "string" },
+          "technique": { "type": "string" },
+          "duration": { "type": "number" },
+          "completion_rate": { "type": "number" },
+          "date": { "type": "string" }
+        }
+      }
+    },
+    "theme_preference": {
+      "type": "string",
+      "description": "User's preferred theme (light/dark)",
+      "enum": ["light", "dark"]
+    },
+    "onboarding_completed": {
+      "type": "boolean",
+      "description": "Whether user has completed onboarding"
+    }
+  }
+}
